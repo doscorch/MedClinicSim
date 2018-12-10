@@ -122,4 +122,22 @@ public class MedicalClinicModel extends Model {
 		exp.report();
 		exp.finish();
 	}
+	
+	public static class CloseBankCondition extends ModelCondition {
+
+        public CloseBankCondition(Model owner, String name,
+                                    boolean showInTrace) {
+            super(owner, name, showInTrace);
+        }
+
+        /**
+         * Returns true if the bank can be closed for the day, which occurs
+         * after 8 hours have elapsed *and* all customers have finished.
+         */
+        public boolean check() {
+        	MedicalClinicModel model = (MedicalClinicModel) getModel();
+            return (model.presentTime().getTimeAsDouble(TimeUnit.HOURS) > 8
+                    && model.customersInSystem.getValue() == 0);
+        }
+    }
 }
