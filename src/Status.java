@@ -1,7 +1,7 @@
 /* Christian Strauss
+ * Tristan Rooney
  * Dr Sauppe
- * CS351 - Assignment04
- * Vodka Shop Model
+ * CS351 - Project
  * Status Enumeration
  */
 enum Status {

@@ -13,9 +13,12 @@
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>initially Debug switched on</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>initially schedules 'DebugOff#1' at 60</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>initially activates 'Nurse#1' now</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>initially activates 'Nurse2#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>initially activates 'Specialist#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>initially activates 'Generator#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse#1'</TD><TD>starts</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse2#1'</TD><TD>starts</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Specialist#1'</TD><TD>starts</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
@@ -26,9 +29,11 @@
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#1'</TD><TD>starts</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>updates 'Customers In System'</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>activates 'Nurse#1' now</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>activates 'Nurse2#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse#1'</TD><TD>holds for 1 until 34</TD></TR>
-<TR VALIGN=TOP><TD> </TD><TD>34</TD><TD> </TD><TD> </TD><TD>activates 'Customer#1' now</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse2#1'</TD><TD>passivates</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD>34</TD><TD> </TD><TD>'Nurse#1'</TD><TD>activates 'Customer#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#1'</TD><TD>updates 'Customers In System'</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>terminates</TD></TR>
@@ -37,25 +42,34 @@
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#2'</TD><TD>starts</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>updates 'Customers In System'</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>activates 'Nurse#1' now</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>activates 'Nurse2#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse#1'</TD><TD>holds for 3 until 54</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse2#1'</TD><TD>passivates</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD>52</TD><TD> </TD><TD>'Generator#1'</TD><TD>activates 'Customer#3' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>holds for 6 until 58</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#3'</TD><TD>starts</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>updates 'Customers In System'</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>activates 'Nurse2#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse2#1'</TD><TD>holds for 7 until 59</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD>54</TD><TD> </TD><TD>'Nurse#1'</TD><TD>activates 'Customer#2' now</TD></TR>
-<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>holds for 7 until 61</TD></TR>
-<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#2'</TD><TD>activates 'Specialist#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
-<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Specialist#1'</TD><TD>holds for 12 until 66</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#2'</TD><TD>updates 'Customers In System'</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>terminates</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD>58</TD><TD> </TD><TD>'Generator#1'</TD><TD>activates 'Customer#4' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>holds for 33 until 91</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#4'</TD><TD>starts</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>updates 'Customers In System'</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>activates 'Nurse#1' now</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Nurse#1'</TD><TD>holds for 24 until 82</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD>59</TD><TD> </TD><TD>'Nurse2#1'</TD><TD>activates 'Customer#3' now</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>passivates</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD>'Customer#3'</TD><TD>updates 'Customers In System'</TD></TR>
+<TR VALIGN=TOP><TD> </TD><TD> </TD><TD> </TD><TD> </TD><TD>terminates</TD></TR>
 <TR VALIGN=TOP><TD> </TD><TD>60</TD><TD>'TraceOff#1'</TD><TD>----</TD><TD>Trace switched off</TD></TR>
 </TABLE><P>
 <FONT SIZE=-1><A HREF=#top>top</A></FONT><P>
-<FONT SIZE=-2>created using <A HREF=http://www.desmoj.de>DESMO-J</A> Version 2.5.1e at Sat Nov 24 15:47:17 CST 2018 - DESMO-J is licensed under <A HREF=http://www.apache.org/licenses/LICENSE-2.0>Apache License, Version 2.0</A></FONT>
+<FONT SIZE=-2>created using <A HREF=http://www.desmoj.de>DESMO-J</A> Version 2.5.1e at Mon Dec 10 00:46:11 CST 2018 - DESMO-J is licensed under <A HREF=http://www.apache.org/licenses/LICENSE-2.0>Apache License, Version 2.0</A></FONT>
 </BODY></HTML>

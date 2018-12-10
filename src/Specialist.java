@@ -1,7 +1,8 @@
+
 /* Christian Strauss
+ * Tristan Rooney
  * Dr Sauppe
  * CS351 - Project
- * Medical Clinic
  * Specialist
  */
 

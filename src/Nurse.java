@@ -1,7 +1,8 @@
+
 /* Christian Strauss
+ * Tristan Rooney
  * Dr Sauppe
  * CS351 - Project
- * Medical Clinic
  * Nurse
  */
 
@@ -13,9 +14,9 @@ import desmoj.core.simulator.TimeSpan;
 
 public class Nurse extends SimProcess {
 	MedicalClinicModel model;
-	private static final double REFERRAL_PROB = 0.4;
+	private static final double REFERRAL_PROB = 40.0;
 	protected Status status;
-	
+
 	public Nurse(Model model, String name, boolean showInTrace) {
 		super(model, name, showInTrace);
 		this.status = Status.idle;
@@ -34,15 +35,15 @@ public class Nurse extends SimProcess {
 				model.nurseUtilization.update(1);
 				customer.waitTime += model.presentTime().getTimeAsDouble() - customer.waitBegin;
 				hold(new TimeSpan(model.sampleNurseTreatment(), TimeUnit.MINUTES));
-				if(refer()) {
+				if (refer()) {
 					customer.needSpecialist = true;
 				}
 				customer.activate();
 			}
 		}
 	}
-	
+
 	public boolean refer() {
-		return Math.random() <= REFERRAL_PROB;
+		return model.randomPercent.sample() <= REFERRAL_PROB;
 	}
 }

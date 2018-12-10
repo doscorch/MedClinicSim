@@ -1,4 +1,6 @@
+
 /* Christian Strauss
+ * Tristan Rooney
  * Dr Sauppe
  * CS351 - Project
  * MedicalClinicModel
@@ -18,20 +20,23 @@ public class MedicalClinicModel extends Model {
 
 	/* State Variables */
 	Nurse nurse;
+	Nurse nurse2;
 	Specialist specialist;
+	Specialist specialist2;
 
 	/* Queues */
 	protected ProcessQueue<Customer> nurseQueue;
 	protected ProcessQueue<Customer> specialistQueue;
 
 	/* Random Distributions */
+	public DiscreteDistUniform randomPercent;
 	protected ContDistExponential nurseTreatmentDist;
 	protected ContDistExponential specialistTreatmentDist;
-	//	8 am to 10 am interarrival
+	// 8 am to 10 am interarrival
 	protected ContDistExponential interarrival8Dist;
-	//	10 am to 4 pm interarrival
+	// 10 am to 4 pm interarrival
 	protected ContDistExponential interarrival10Dist;
-	//	4 pm to 8 pm interarrival
+	// 4 pm to 8 pm interarrival
 	protected ContDistExponential interarrival4Dist;
 
 	/* Constants */
@@ -41,6 +46,7 @@ public class MedicalClinicModel extends Model {
 	protected Count customersInSystem;
 	protected Tally customerResponseTimes;
 	protected Tally customerWaitTimes;
+	protected Count customerSentToER;
 	protected Accumulate nurseUtilization;
 	protected Accumulate specialistUtilization;
 
@@ -49,13 +55,17 @@ public class MedicalClinicModel extends Model {
 	}
 
 	public void doInitialSchedules() {
-		// initialize Boris
+		// initialize Nurse
 		nurse = new Nurse(this, "Nurse", true);
 		nurse.activate();
+		// nurse2 = new Nurse(this, "Nurse2", true);
+		// nurse2.activate();
 
-		// initialize Naina
+		// initialize Specialist
 		specialist = new Specialist(this, "Specialist", true);
 		specialist.activate();
+		// specialist2 = new Specialist(this, "Specialist2", true);
+		// specialist2.activate();
 
 		// initialize Customer Generator
 		new CustomerGenerator(this, "Generator", true).activate();
@@ -75,16 +85,19 @@ public class MedicalClinicModel extends Model {
 		nurseTreatmentDist = new ContDistExponential(this, "Nurse Treatment", 8, true, false);
 		specialistTreatmentDist = new ContDistExponential(this, "Specialist Treatment", 25, true, false);
 
+		randomPercent = new DiscreteDistUniform(this, "", 0, 100, true, false);
+
 		// Initialize statistics
 		customersInSystem = new Count(this, "Customers In System", true, true);
 		customerResponseTimes = new Tally(this, "Customer Response Times", true, false);
 		customerWaitTimes = new Tally(this, "Customer Wait Times", true, false);
+		customerSentToER = new Count(this, "Customer Sent To ER", true, false);
 		nurseUtilization = new Accumulate(this, "nurse Utilization", true, false);
 		specialistUtilization = new Accumulate(this, "specialist Utilization", true, false);
 	}
 
 	public double sampleInterarrival() {
-		if(presentTime().getTimeAsDouble() < 120) {
+		if (presentTime().getTimeAsDouble() < 120) {
 			return interarrival8Dist.sample();
 		} else if (presentTime().getTimeAsDouble() < 480) {
 			return interarrival10Dist.sample();
@@ -92,7 +105,7 @@ public class MedicalClinicModel extends Model {
 			return interarrival4Dist.sample();
 		}
 	}
-	
+
 	public double sampleNurseTreatment() {
 		return nurseTreatmentDist.sample();
 	}
@@ -100,7 +113,7 @@ public class MedicalClinicModel extends Model {
 	public double sampleSpecialistTreatment() {
 		return specialistTreatmentDist.sample();
 	}
-	
+
 	public static void main(String[] args) {
 		// INIT Experiment
 		Experiment.setEpsilon(TimeUnit.MINUTES);
@@ -113,7 +126,7 @@ public class MedicalClinicModel extends Model {
 
 		/* SET Experiment */
 		exp.setShowProgressBar(false);
-		exp.stop(new TimeInstant(RUN_TIME, TimeUnit.MINUTES));
+		exp.stop(new MedicalClinicModel.CloseBankCondition(model, "Close Clinic", true));
 		exp.tracePeriod(new TimeInstant(0, TimeUnit.MINUTES), new TimeInstant(60, TimeUnit.MINUTES));
 		exp.debugPeriod(new TimeInstant(0, TimeUnit.MINUTES), new TimeInstant(60, TimeUnit.MINUTES));
 
@@ -122,22 +135,17 @@ public class MedicalClinicModel extends Model {
 		exp.report();
 		exp.finish();
 	}
-	
+
 	public static class CloseBankCondition extends ModelCondition {
 
-        public CloseBankCondition(Model owner, String name,
-                                    boolean showInTrace) {
-            super(owner, name, showInTrace);
-        }
+		public CloseBankCondition(Model owner, String name, boolean showInTrace) {
+			super(owner, name, showInTrace);
+		}
 
-        /**
-         * Returns true if the bank can be closed for the day, which occurs
-         * after 8 hours have elapsed *and* all customers have finished.
-         */
-        public boolean check() {
-        	MedicalClinicModel model = (MedicalClinicModel) getModel();
-            return (model.presentTime().getTimeAsDouble(TimeUnit.HOURS) > 8
-                    && model.customersInSystem.getValue() == 0);
-        }
-    }
+		public boolean check() {
+			MedicalClinicModel model = (MedicalClinicModel) getModel();
+			return (model.presentTime().getTimeAsDouble(TimeUnit.MINUTES) > RUN_TIME
+					&& model.customersInSystem.getValue() == 0);
+		}
+	}
 }
